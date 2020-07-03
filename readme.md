@@ -11,8 +11,22 @@ Grape.grab(autoDownload: true, group : 'org.seleniumhq.selenium', module : 'sele
 Grape.grab(group:"org.seleniumhq.selenium", module:"selenium-chrome-driver", version:"3.14.0")
 
 import geb.Browser
+import org.openqa.selenium.Keys
 
 browser = new Browser()
-browser.drive { go "http://www.google.com" }
+browser.drive { 
+  go "https://duckduckgo.com/"
+  def input = $('#search_form_input_homepage')
+  input.value("youtube never gonna give you up")
+  input << Keys.ENTER
+  
+  waitFor {
+     $('#r1-0').click()
+  }
+  
+  waitFor {
+     $('.ytp-cued-thumbnail-overlay-image').click()
+  }
+}
 
 ```
