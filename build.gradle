@@ -1,0 +1,43 @@
+plugins {
+    id 'java-library'
+    id "groovy"
+    id "com.github.erdi.webdriver-binaries" version "2.2"
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    compile "commons-cli:commons-cli:1.2"
+    compile "jline:jline:2.11"
+    compile 'org.gebish:geb-core:3.4'
+    compile 'org.apache.ivy:ivy:2.4.0'
+    compile "org.seleniumhq.selenium:selenium-chrome-driver:3.14.0"
+}
+
+// run as JAVA_HOME=$JDK8 gw shell
+task shell(type: JavaExec) {
+    standardInput = System.in
+    main = 'shell.ShellMain'
+    classpath = sourceSets.main.runtimeClasspath
+    systemProperty 'geb.env', 'chrome'
+    systemProperty 'geb.build.reportsDir', 'build/reports/geb'
+
+    jvmArgs = []
+}
+
+webdriverBinaries {
+    chromedriver {
+        version = '83.0.4103.39'
+        fallbackTo32Bit = true
+    }
+    configureTask(shell)
+}
+

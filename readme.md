@@ -1,0 +1,18 @@
+run with `./gradlew shell --console plain`
+
+Paste this to get it started
+
+```
+import groovy.grape.Grape
+
+Grape.grab(group:"org.gebish", module:"geb-core", version:"3.4")
+Grape.grab(group:"org.seleniumhq.selenium", module:"selenium-firefox-driver", version:"3.14.0")
+Grape.grab(autoDownload: true, group : 'org.seleniumhq.selenium', module : 'selenium-chrome-driver', version : '3.14.0')
+Grape.grab(group:"org.seleniumhq.selenium", module:"selenium-chrome-driver", version:"3.14.0")
+
+import geb.Browser
+
+browser = new Browser()
+browser.drive { go "http://www.google.com" }
+
+```
