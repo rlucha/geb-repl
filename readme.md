@@ -19,14 +19,6 @@ browser.drive {
   def input = $('#search_form_input_homepage')
   input.value("youtube never gonna give you up")
   input << Keys.ENTER
-  
-  waitFor {
-     $('#r1-0').click()
-  }
-  
-  waitFor {
-     $('.ytp-cued-thumbnail-overlay-image').click()
-  }
 }
 
 ```
