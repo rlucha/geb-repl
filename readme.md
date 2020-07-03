@@ -19,6 +19,10 @@ browser.drive {
   def input = $('#search_form_input_homepage')
   input.value("youtube never gonna give you up")
   input << Keys.ENTER
+  
+  waitFor {
+    $('.result')[0].click()
+  }  
 }
 
 ```
